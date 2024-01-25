@@ -17,7 +17,9 @@ vegetables = ['Beetroot', 'Cabbage', 'Capsicum', 'Carrot', 'Cauliflower', 'Corn'
               'Lettuce', 'Onion', 'Peas', 'Potato', 'Raddish', 'Soy Beans', 'Spinach', 'Sweetcorn', 'Sweetpotato',
               'Tomato', 'Turnip']
 
-img_path="C:\\Users\\philb\\OneDrive\\Desktop\\fruits&veges\\pics\\watermelon.jpg" #Replace with your actual imgage file
+#img_path="C:\\Users\\philb\\OneDrive\\Desktop\\fruits&veges\\pics\\Mango.jpg" #Replace with your actual imgage file
+
+img_path="sample.png"
 
 model = load_model('FV.h5')
 img = load_img(img_path, target_size=(224, 224, 3))
