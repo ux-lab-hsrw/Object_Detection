@@ -2,6 +2,10 @@ import numpy as np
 from keras.preprocessing.image import load_img, img_to_array
 from keras.models import load_model
 import cv2
+from openai import OpenAI
+from pathlib import Path
+import pygame
+
 model = load_model('FV.h5')
 
 labels = {0: 'apple', 1: 'banana', 2: 'beetroot', 3: 'bell pepper', 4: 'cabbage', 5: 'capsicum', 6: 'carrot',
@@ -33,6 +37,28 @@ y = " ".join(str(x) for x in y_class)
 y = int(y)
 res = labels[y]
 print(res)
+
+client = OpenAI(api_key='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')
+
+speech_file_path = "./speech.mp3"
+
+response = client.audio.speech.create(
+  model="tts-1",
+  voice="alloy",
+  input="This is a banana!",
+)
+response.stream_to_file(speech_file_path)
+
+#Initialize the mixer module
+pygame.mixer.init()
+#Load the sound file
+pygame.mixer.music.load(speech_file_path)
+#Play the sound
+pygame.mixer.music.play()
+#Wait for the sound to finish playing
+while pygame.mixer.music.get_busy():
+    pygame.time.Clock().tick(10)
+
 
 text = res
 font = cv2.FONT_HERSHEY_SIMPLEX
